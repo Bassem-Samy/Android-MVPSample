@@ -2,6 +2,7 @@ package com.bassem.mvpsample.services;
 
 import com.bassem.mvpsample.helper.ServiceCallResult;
 
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -15,11 +16,12 @@ public class ServiceConnector {
     static final String WEATHER_BASE_URL = "http://api.openweathermap.org/data/2.5/";
     static final String WEATHER_APP_ID = "3cb726822c464af37bbbbb89747e7640";
 
-    public static void getWeather(String location, final ServiceCallResult serviceCallResult) {
+
+    public static Call<Object> getWeather(String location, final ServiceCallResult serviceCallResult) {
         Retrofit retrofit = new Retrofit.Builder().baseUrl(WEATHER_BASE_URL).build();
         OpenWeatherService service = retrofit.create(OpenWeatherService.class);
-        Call<Object> call = service.getWeather(location, WEATHER_APP_ID);
-        call.enqueue(new Callback<Object>() {
+        Call<Object> getWeatherServiceCall = service.getWeather(location, WEATHER_APP_ID);
+        getWeatherServiceCall.enqueue(new Callback<Object>() {
             @Override
             public void onResponse(Call<Object> call, Response<Object> response) {
                 if (serviceCallResult != null) {
@@ -34,5 +36,8 @@ public class ServiceConnector {
                 }
             }
         });
+        return getWeatherServiceCall;
+
     }
+
 }
