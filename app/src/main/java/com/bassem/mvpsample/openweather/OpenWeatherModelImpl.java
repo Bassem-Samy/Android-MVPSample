@@ -1,7 +1,10 @@
 package com.bassem.mvpsample.openweather;
 
+import com.bassem.mvpsample.helper.JsonParser;
 import com.bassem.mvpsample.helper.ServiceCallResultListener;
+import com.bassem.mvpsample.model.WeatherResult;
 import com.bassem.mvpsample.services.ServiceConnector;
+import com.google.gson.Gson;
 
 import retrofit2.Call;
 
@@ -10,7 +13,7 @@ import retrofit2.Call;
  */
 
 public class OpenWeatherModelImpl implements OpenWeatherModel, ServiceCallResultListener {
-    private Call<Object> getWeatherCall;
+    private Call<String> getWeatherCall;
     private OnGetWeatherFinishedListener mListener;
 
     @Override
@@ -29,7 +32,9 @@ public class OpenWeatherModelImpl implements OpenWeatherModel, ServiceCallResult
 
     @Override
     public void onResponse(String json) {
-        mListener.onSuccess(json);
+
+        WeatherResult result = JsonParser.parseWeatherResultJson(json);
+        mListener.onSuccess(result);
     }
 
     @Override

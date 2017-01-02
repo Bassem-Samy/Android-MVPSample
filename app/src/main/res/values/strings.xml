@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MVPSample</string>
+    <string name="get_data">Get Weather Data</string>
+    <string name="getting_data">getting data...</string>
 </resources>
