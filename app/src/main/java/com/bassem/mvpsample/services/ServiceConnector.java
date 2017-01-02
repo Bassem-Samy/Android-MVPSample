@@ -1,8 +1,7 @@
 package com.bassem.mvpsample.services;
 
-import com.bassem.mvpsample.helper.ServiceCallResult;
+import com.bassem.mvpsample.helper.ServiceCallResultListener;
 
-import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -17,22 +16,22 @@ public class ServiceConnector {
     static final String WEATHER_APP_ID = "3cb726822c464af37bbbbb89747e7640";
 
 
-    public static Call<Object> getWeather(String location, final ServiceCallResult serviceCallResult) {
+    public static Call<Object> getWeather(String location, final ServiceCallResultListener serviceCallResultListener) {
         Retrofit retrofit = new Retrofit.Builder().baseUrl(WEATHER_BASE_URL).build();
         OpenWeatherService service = retrofit.create(OpenWeatherService.class);
         Call<Object> getWeatherServiceCall = service.getWeather(location, WEATHER_APP_ID);
         getWeatherServiceCall.enqueue(new Callback<Object>() {
             @Override
             public void onResponse(Call<Object> call, Response<Object> response) {
-                if (serviceCallResult != null) {
-                    serviceCallResult.onResponse(response.toString());
+                if (serviceCallResultListener != null) {
+                    serviceCallResultListener.onResponse(response.toString());
                 }
             }
 
             @Override
             public void onFailure(Call<Object> call, Throwable t) {
-                if (serviceCallResult != null) {
-                    serviceCallResult.onError(t);
+                if (serviceCallResultListener != null) {
+                    serviceCallResultListener.onError(t);
                 }
             }
         });
