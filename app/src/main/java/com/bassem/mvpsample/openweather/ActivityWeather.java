@@ -2,10 +2,13 @@ package com.bassem.mvpsample.openweather;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.bassem.mvpsample.R;
+import com.bassem.mvpsample.model.WeatherResult;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -17,6 +20,11 @@ public class ActivityWeather extends AppCompatActivity implements OpenWeatherVie
     @BindView(R.id.rltv_loading)
     RelativeLayout loadingRelativeLayout;
 
+    @BindView(R.id.cv_data)
+    CardView dataCardView;
+    @BindView(R.id.txt_weather)
+    TextView weatherText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,17 +35,20 @@ public class ActivityWeather extends AppCompatActivity implements OpenWeatherVie
 
     @Override
     public void showProgress() {
+        dataCardView.setVisibility(View.GONE);
         loadingRelativeLayout.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgress() {
+
+        dataCardView.setVisibility(View.VISIBLE);
         loadingRelativeLayout.setVisibility(View.GONE);
     }
 
     @Override
-    public void setItems() {
-
+    public void populateData(WeatherResult weatherData) {
+        weatherText.setText(weatherData.getName());
     }
 
     @Override

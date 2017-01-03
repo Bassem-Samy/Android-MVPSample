@@ -31,6 +31,7 @@ public class OpenWeatherPresenterImpl implements OpenWeatherPresenter, OpenWeath
     @Override
     public void onSuccess(WeatherResult result) {
         weatherView.hideProgress();
+        weatherView.populateData(result);
         Log.e("result", result.toString());
 //weatherview . display data
     }

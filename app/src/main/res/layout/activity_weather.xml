@@ -1,36 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_weather"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context="com.bassem.mvpsample.openweather.ActivityWeather">
 
-    <Button
-        android:id="@+id/btn_get_weather_data"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:text="@string/get_data" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btn_get_weather_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:text="@string/get_data" />
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cv_data"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:background="@color/colorWhite"
+                android:visibility="gone"
+                card_view:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txt_weather"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorBlack" />
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
+
 
     <RelativeLayout
+        android:id="@+id/rltv_loading"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorSemiTransparentBlack"
         android:clickable="true"
-        android:id="@+id/rltv_loading"
-        android:visibility="gone">
+        android:visibility="gone"
+        >
 
         <ProgressBar
             android:id="@+id/prgrs_getting_data"
-            style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="8dp"
+android:padding="@dimen/padding15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_marginTop="24dp"
+
             android:indeterminate="true"
             android:visibility="visible" />
 
@@ -39,7 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/prgrs_getting_data"
             android:gravity="center_horizontal"
-            android:textColor="@android:color/white"
-            android:text="@string/getting_data" />
+            android:text="@string/getting_data"
+            android:textColor="@android:color/white" />
     </RelativeLayout>
 </RelativeLayout>
