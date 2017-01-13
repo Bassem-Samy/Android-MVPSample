@@ -2,4 +2,10 @@
     <string name="app_name">MVPSample</string>
     <string name="get_data">Get Weather Data</string>
     <string name="getting_data">getting data...</string>
+    <string name="pressure">Pressure</string>
+    <string name="humidity">Humidity</string>
+    <string name="minimum_temp">Minimum temp.</string>
+    <string name="max_temp">Maximum temp.</string>
+    <string name="search_city_weather">Search city weather</string>
+    <string name="please_enter_search_city">Please enter a search city</string>
 </resources>

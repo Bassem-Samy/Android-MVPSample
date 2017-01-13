@@ -3,5 +3,6 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="padding15">15dp</dimen>
+    <dimen name="margin5">5dp</dimen>
     <dimen name="margin15">15dp</dimen>
 </resources>

@@ -17,12 +17,12 @@ public class ServiceConnector {
     static final String WEATHER_APP_ID = "3cb726822c464af37bbbbb89747e7640";
 
 
-    public static Call<String> getWeather(String location, final ServiceCallResultListener serviceCallResultListener) {
+    public static Call<String> getWeather(String location,String units, final ServiceCallResultListener serviceCallResultListener) {
         Retrofit retrofit = new Retrofit.Builder().baseUrl(WEATHER_BASE_URL)
                 .addConverterFactory(new ToStringConverterFactory())
                 .build();
         OpenWeatherService service = retrofit.create(OpenWeatherService.class);
-        Call<String> getWeatherServiceCall = service.getWeather(location, WEATHER_APP_ID);
+        Call<String> getWeatherServiceCall = service.getWeather(location, WEATHER_APP_ID,units);
         getWeatherServiceCall.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {

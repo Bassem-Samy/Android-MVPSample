@@ -1,5 +1,6 @@
 package com.bassem.mvpsample.openweather;
 
+import com.bassem.mvpsample.helper.Constants;
 import com.bassem.mvpsample.helper.JsonParser;
 import com.bassem.mvpsample.helper.ServiceCallResultListener;
 import com.bassem.mvpsample.model.WeatherResult;
@@ -19,7 +20,7 @@ public class OpenWeatherModelImpl implements OpenWeatherModel, ServiceCallResult
     @Override
     public void getWeather(String location, OnGetWeatherFinishedListener listener) {
         mListener = listener;
-        getWeatherCall = ServiceConnector.getWeather(location, this);
+        getWeatherCall = ServiceConnector.getWeather(location, Constants.IMPERIAL_UNITS, this);
     }
 
     @Override
