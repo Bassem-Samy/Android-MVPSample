@@ -7,12 +7,14 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bassem.mvpsample.R;
 import com.bassem.mvpsample.model.WeatherResult;
+import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -43,7 +45,8 @@ public class ActivityWeather extends AppCompatActivity implements OpenWeatherVie
     TextView minimumTempTextView;
     @BindView(R.id.txt_max_temp)
     TextView maxTempTextView;
-
+    @BindView(R.id.img_weather_icon)
+    ImageView weatherIconImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +79,15 @@ public class ActivityWeather extends AppCompatActivity implements OpenWeatherVie
 
     private void populateUI(WeatherResult weatherData) {
         nameTextView.setText(weatherData.getName());
+        degreeTextView.setText(weatherData.getDegree());
+        descriptionTextView.setText(weatherData.getDescription());
+        pressureTextView.setText(weatherData.getPressure());
+        humidityTextView.setText(weatherData.getHumidity());
+        maxTempTextView.setText(weatherData.getMaxTemp());
+        minimumTempTextView.setText(weatherData.getMinTemp());
+        if (weatherData.getWeatherIconUrl() != null) {
+            Picasso.with(this).load(weatherData.getWeatherIconUrl()).resize(50, 50).centerInside().into(weatherIconImageView);
+        }
 
     }
 
@@ -90,10 +102,6 @@ public class ActivityWeather extends AppCompatActivity implements OpenWeatherVie
         super.onDestroy();
     }
 
-
-    void getWeatherData() {
-        presenter.getWeather("cairo, Eg");
-    }
 
     @OnEditorAction(R.id.edt_search)
     boolean onSearchEditorAction(TextView v, int actionId, KeyEvent event) {

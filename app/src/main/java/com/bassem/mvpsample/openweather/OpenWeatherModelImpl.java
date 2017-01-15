@@ -20,7 +20,7 @@ public class OpenWeatherModelImpl implements OpenWeatherModel, ServiceCallResult
     @Override
     public void getWeather(String location, OnGetWeatherFinishedListener listener) {
         mListener = listener;
-        getWeatherCall = ServiceConnector.getWeather(location, Constants.IMPERIAL_UNITS, this);
+        getWeatherCall = ServiceConnector.getWeather(location, Constants.METRICS_UNITS, this);
     }
 
     @Override
