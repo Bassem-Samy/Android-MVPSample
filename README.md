@@ -19,20 +19,17 @@ This way if you remove any implementation you still got your functionality prese
 
 ### Model layer:
 (In antoniolg's example it's named interactor.)
-</br>
 1. Create an interface for the model (OpenWeatherModel.java)
-</br>
 it contains main functionalities like getweather, stop getting weather and so.
 2. Create a class that implements that model (OpenWeatherModelImpl.java) it contains the implementations for the methods.
 ### Presenter layer:
-1. Create an interface for the presenter (OpenWeatherPresenter.java)</br>
+1. Create an interface for the presenter (OpenWeatherPresenter.java)
 You should add methods to get data from the model layer and also methods that will deal with the view layer like update data, show and hide progress etc..
 2. Create a class that implements the presenter (OpenWeatherPresenterImpl)
-</br>
 This class holds references to both the view object and the interactor object, to be able to communicate and transfer data between both layers.
 ### View Layer:
-1. Create an interface for the view (OpenWeatherView.java)</br>
+1. Create an interface for the view (OpenWeatherView.java)
 This interface has the UI methods you will need in your app that would be used also by the presenter, like update data, show and hide progress, show error etc..
-2. Create Activity/Fragment that implements this interface and override the methods.</br>
+2. Create Activity/Fragment that implements this interface and override the methods.
 In that Activity/Fragment you make  a new instance of the presenter (Here [Dagger2] (https://google.github.io/dagger/) is used) and then call the presenter.getData to start the logic of the app.
 3. Sometimes if a fragment is used it's prefered that the creation of the presenter is done in the holding Activity not the fragment itself.
