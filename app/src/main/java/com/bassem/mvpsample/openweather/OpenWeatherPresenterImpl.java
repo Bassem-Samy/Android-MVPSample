@@ -10,11 +10,11 @@ import com.bassem.mvpsample.model.WeatherResult;
 
 public class OpenWeatherPresenterImpl implements OpenWeatherPresenter, OpenWeatherModel.OnGetWeatherFinishedListener {
     private OpenWeatherView weatherView;
-    private OpenWeatherModelImpl weatherModel;
+    private OpenWeatherModel weatherModel;
 
-    public OpenWeatherPresenterImpl(OpenWeatherView view) {
+    public OpenWeatherPresenterImpl(OpenWeatherView view,OpenWeatherModel model) {
         this.weatherView = view;
-        weatherModel = new OpenWeatherModelImpl();
+        weatherModel = model;
     }
 
     @Override

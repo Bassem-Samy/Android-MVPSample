@@ -1,7 +1,7 @@
 package com.bassem.mvpsample.openweather;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -14,16 +14,19 @@ import android.widget.Toast;
 
 import com.bassem.mvpsample.R;
 import com.bassem.mvpsample.model.WeatherResult;
+import com.bassem.mvpsample.openweather.di.DaggerWeatherComponent;
+import com.bassem.mvpsample.openweather.di.WeatherModule;
 import com.squareup.picasso.Picasso;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import butterknife.OnEditorAction;
 
 public class ActivityWeather extends AppCompatActivity implements OpenWeatherView {
-
-    private OpenWeatherPresenterImpl presenter;
+    @Inject
+    OpenWeatherPresenterImpl presenter;
     @BindView(R.id.rltv_loading)
     RelativeLayout loadingRelativeLayout;
 
@@ -52,8 +55,9 @@ public class ActivityWeather extends AppCompatActivity implements OpenWeatherVie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather);
-        presenter = new OpenWeatherPresenterImpl(this);
+        //presenter = new OpenWeatherPresenterImpl(this);
         ButterKnife.bind(this);
+        DaggerWeatherComponent.builder().weatherModule(new WeatherModule(this)).build().inject(this);
     }
 
     @Override
