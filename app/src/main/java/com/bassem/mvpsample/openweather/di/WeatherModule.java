@@ -33,6 +33,13 @@ public class WeatherModule {
         return new OpenWeatherModelImpl();
     }
 
+    /**
+     * You can replace this with adding @Inject annotation over the presenterimpl constructor, and dagger will use the graph up here to inject it's constructor
+     * but the point is by keeping it here, we can provide a mock presenter for instance so this approach is better for testing
+     * @param view
+     * @param model
+     * @return
+     */
     @Singleton
     @Provides
     public OpenWeatherPresenterImpl providesOpenWeatherPresenterImpl(OpenWeatherView view, OpenWeatherModel model) {
