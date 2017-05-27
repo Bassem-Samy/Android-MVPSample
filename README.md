@@ -33,3 +33,5 @@ This interface has the UI methods you will need in your app that would be used a
 2. Create Activity/Fragment that implements this interface and override the methods.
 In that Activity/Fragment you make  a new instance of the presenter -Here [Dagger2](https://google.github.io/dagger/) is used- and then call the presenter.getData to start the logic of the app.
 3. Sometimes if a fragment is used it's prefered that the creation of the presenter is done in the holding Activity not the fragment itself.
+
+![Android MVP Sample](http://i.makeagif.com/media/5-27-2017/7LXbgN.gif)
